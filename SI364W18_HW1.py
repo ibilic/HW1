@@ -45,8 +45,6 @@ def welcome():
 # }
 
 @app.route('/movie/<moviename>')
-# def movie(moviename):
-#     return '<h1>Welcome to {}</h1>'.format(moviename)
 
 def get_itunes_data(moviename):# Get specifics of how to write this from knowledge about REST APIs in Python -- see textbook -- and iTunes API documentation
     baseurl = "https://itunes.apple.com/search?entity=movie&attribute=movieTerm"
@@ -56,13 +54,6 @@ def get_itunes_data(moviename):# Get specifics of how to write this from knowled
     text = resp.text
     python_obj = json.loads(text)
     return str(python_obj)
-    # album_titles = []
-    # for item in python_obj["results"]:
-    #     album_titles.append(item) # This turns out where you find the album name in the nested data
-    #     # all_titles = "<br>".join(album_titles) # join by the <br> tag, which means 'line break' in html#
-    #     return str(album_titles)
-    #     # return str(all_titles)#return a string -- must return a string to render on the page
-
 
 ## You should use the iTunes Search API to get that data.
 ## Docs for that API are here: https://affiliate.itunes.apple.com/resources/documentation/itunes-store-web-service-search-api/
@@ -130,14 +121,14 @@ def problem4():
     """
     if request.method == "POST":
         name = request.form['name']
-        # form23 = """"<form action="/problem4form" method='POST'> <br>You're so awesome {}".format(name)"""
-        entered1 = request.form['option1']
-        if entered1 == '1':
-            return (""" <iframe src="https://www.youtube.com/embed/YQHsXMglC9A" width="853" height="480" frameborder="0" allowfullscreen></iframe>""") + "You are so awesome {}".format(name)
+
+        entered = request.form['option1']
+        if entered == '1':
+            return (""" <iframe src="https://www.youtube.com/embed/YQHsXMglC9A" width="853" height="480" frameborder="0" allowfullscreen></iframe>""") + "<br>You are so awesome {}".format(name)
         # entered2 = request.form['option2']
         # if entered2 == '2':
         #     return (""" <iframe src="https://www.youtube.com/embed/jZVQD9piv7A" width="853" height="480" frameborder="0" allowfullscreen></iframe>""")
-    #
+
     else:
         return form2
 
